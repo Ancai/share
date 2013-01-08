@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>曲线图</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript" src="../../js/amcharts/amcharts.js"></script>
+<script type="text/javascript" src="../../js/tool/chart.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var chartData = getAjaxJson(basePath + "/chart/lineData");
+		//lineChart(chartData, "曲线图", "chartdiv");
+		
+		var tempChart = lineChart(chartData, "曲线图");
+		tempChart.write("chartdiv");
+		tempChart.addListener('changed', function(eventObj) {
+			alert(eventObj.index);
+			alert(chartData[eventObj.index].categoryField);
+			alert(chartData[eventObj.index].valueField);
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div id="chartdiv" style="width: 800px;height: 600px;"></div>
+</body>
+</html>

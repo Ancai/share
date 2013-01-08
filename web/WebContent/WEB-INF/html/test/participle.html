@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>中文分词</title>
+<link rel="shortcut icon" href="../../images/favicon.ico">
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript">
+$(function() {
+	var data = getAjaxData(basePath + "/ansj/test1", {}, "text");
+	$("#1").html(data);
+	var data2 = getAjaxData(basePath + "/ansj/test2", {}, "text");
+	$("#2").html(data2);
+	$("#2").hide();
+	$("#ctr2").toggle(function() {
+		$("#2").hide();
+		$(this).text("显示");
+	}, function() {
+		$("#2").show();
+		$(this).text("隐藏");
+	});
+	$("#do").click(function() {
+		var result = getAjaxData(basePath + "/ansj/test1", {originalCnt: $("#originalCnt").val()}, "text");
+		$("#result").html(result);
+	});
+	/**
+	var data4 = getAjaxData(basePath + "/ansj/test3", {originalCnt: $("#originalCnt").val()}, "json");
+	$("#4").html(data4);
+	$("#4").hide();
+	$("#ctr4").toggle(function() {
+		$("#4").hide();
+		$(this).text("显示");
+	}, function() {
+		$("#4").show();
+		$(this).text("隐藏");
+	});**/
+});
+</script>
+
+</head>
+<body>
+	<h2>Ansj中文分词试验</h2>
+	<p>原文：Ansj中文分词是一个真正的ict的实现.并且加入了自己的一些数据结构和算法的分词.实现了高效率和高准确率的完美结合!</p>
+	<h3>标注的调用方式</h3>
+	<p id="1"></p>
+	<h3>词性标注           <span id="ctr2" style="color: red;cursor: pointer;">显示</span></h3>
+	<p id="2"></p>
+	<h3>测试</h3>
+	<p id="3"> 
+		<textarea rows="10" cols="99" id="originalCnt">
+		欢迎来到 Ansj中文分词
+
+       Ansj中文分词是一款纯java的主要应用于自然语言处理的高精度的中文分词.我们追求的目标.是--准确-高效-自由.
+      中文分词 . 人名识别、地名识别、组织机构名识别、多级词性标注、关键词提取、指纹提取支持行业词典、用户自定义词典
+      所有词性符合标准规范.属于系统识别出的词性有 nr 人名 nt机构名 nw新词 词性可以又用户自定义词典所定义!
+		</textarea>
+		<button id="do" value="分词">分词</button>
+		<br/>
+		<span id="result"></span>
+	</p>
+	<!--  
+	<h3>词性标注           <span id="ctr4" style="color: red;cursor: pointer;">显示</span></h3>
+	<p id="4"></p>-->
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Raphael:clock</title>
+<link rel="shortcut icon" href="../../images/favicon.ico">
+	<script type="text/javascript" src="../../js/compent/raphael-min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		Raphael(function() {
+			var img = document.getElementById("photo");
+			img.style.display = "none";
+			var r = Raphael("holder", 600, 540);
+			r.image(img.src, 140, 140, 320, 240);
+			r.image(img.src, 140, 380, 320, 240)
+			.attr({
+				transform: "s1-1",
+				opacity: .5
+			});
+			r.rect(0, 380, 600, 160).attr({
+				fill: "90-#333-#333",
+				stroke: "none",
+				opacity: 0.5
+			});
+		});
+	</script>
+	<style type="text/css">
+		body {
+			background-color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div id="holder">
+        <img id="photo" src="../../images/test/bd.jpg" width="320" height="240" alt="Test" />
+    </div>
+</body>
+</html>

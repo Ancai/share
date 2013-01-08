@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>柱状图</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript" src="../../js/amcharts/amcharts.js"></script>
+<script type="text/javascript" src="../../js/tool/chart.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var chartData = getAjaxJson(basePath + "/chart/columnData");
+		//columnChart(chartData, "", "chartdiv");
+		var tempChart = columnChart(chartData, "柱状图");
+		tempChart.write("chartdiv");
+		tempChart.addListener('clickGraphItem', function(eventObj) {
+			alert(eventObj.index);
+			alert(chartData[eventObj.index].categoryField);
+			alert(chartData[eventObj.index].valueField);
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="chartdiv" style="width: 800px;height: 600px;"></div>
+</body>
+</html>

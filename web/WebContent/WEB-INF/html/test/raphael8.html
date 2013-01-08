@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Raphael:light</title>
+<link rel="shortcut icon" href="../../images/favicon.ico">
+	<script type="text/javascript" src="../../js/compent/raphael-min.js"></script>
+	<script type="text/javascript" src="../../js/compent/raphael-font.js"></script>
+	<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		window.onload = function() {
+			var img = document.getElementById("22");
+			var posi = $("#22").position();
+			var width = img.offsetWidth,
+				height = img.offsetHeight,
+				left = posi.left,
+				top = posi.top;
+			var centerX = left + width / 2,
+				centerY = top + height / 2,
+				radius = Math.sqrt(width*width + height*height);
+			console.log(width +" "+ height+" "+left+" "+top+" "+centerX+" "+centerY+" "+radius);
+			$("#22").replaceWith("<div id='22' style='width:"+360+"px;height:"+360+"px'></div>");	
+			var r = Raphael("22", 2*radius, 2*radius);
+			r.circle(centerX+40, centerY, width/2)
+				.animate({ stroke: "#f00", "stroke-width": 20, "stroke-opacity": 0.5}, 2000);
+			alert(img.src)
+			r.image(img.src, left, top, left + width, top + height);
+		}
+	</script>
+	<style type="text/css">
+/* 		*{filter: alpha(opacity=80); opacity: 0.8;} */
+	</style>
+</head>
+<body>
+ <div id="1">
+ 	<img src="../../images/test/ball_green.png" alt="策略" title="策略" style="f"/><span>安全检查</span>
+ </div>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <div id="2">
+ 	<img id="22" src="../../images/test/ball_red.png" alt="策略" title="策略"/>
+ </div>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <div id="3">
+ 	<img src="../../images/test/ball_yellow.png" alt="策略" title="策略"/><span>深入检查</span>
+ </div>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <div id="3">
+ 	<img src="../../images/test/ball_gray.png" alt="策略" title="策略"/><span>局部检查</span>
+ </div>
+</body>
+</html>

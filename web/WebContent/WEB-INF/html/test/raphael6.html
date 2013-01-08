@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Raphael:font</title>
+<link rel="shortcut icon" href="../../images/favicon.ico">
+	<script type="text/javascript" src="../../js/compent/raphael-min.js"></script>
+	<script type="text/javascript" src="../../js/compent/raphael-font.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		window.onload = function() {
+			var r = Raphael("holder", 640, 480),
+			    fonts = [0, r.getFont("1"), r.getFont("2"), r.getFont("3"), r.getFont("whoa")];
+				custom = r.print(70, 150, "Custom fonts", fonts[4], 60).attr({fill: "#fff"}),
+				aseasyas = r.print(50, 240, "As easy as", fonts[4], 60).attr({fill: "none", stroke: "#fff"}),
+				nums = [
+			        r.print(450, 240, "1", fonts[1], 60).attr({fill: "#fff"}),
+			        r.print(450, 240, "1", fonts[2], 60).attr({fill: "#fff"}),
+			        r.print(450, 240, "1", fonts[3], 60).attr({fill: "#fff"})
+		        ];
+			nums[0].animate({
+				2: {fill: Raphael.getColor()},
+				3: {transform: "s3"},
+				4: {transform: ""}
+			}, 4000);
+			nums[1].animate({
+				2: {fill: Raphael.getColor()},
+				3: {},
+				4: {transform: "s3"},
+				5: {transform: ""}
+			}, 4500);
+			nums[2].animate({
+				2: {fill: Raphael.getColor()},
+				4: {},
+				5: {transform: "s3"},
+				6: {transform: ""}
+			}, 5000);
+			aseasyas.animate({
+				2: {},
+				4: {transform: "s.2, 1"},
+				6: {transform: ""}
+			}, 5000);
+		};
+	</script>
+	<style type="text/css">
+		body {
+			background-color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div id="holder">    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Raphael:font</title>
+<link rel="shortcut icon" href="../../images/favicon.ico">
+	<script type="text/javascript" src="../../js/compent/raphael-min.js"></script>
+	<script type="text/javascript" src="../../js/compent/raphael-font.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		window.onload = function() {
+			var r = Raphael("flag", 640, 480);
+			r.circle(320, 240, 30).attr({ stroke: "#999", "stroke-width": 10, "stroke-opacity": 0.5})
+				.click(function() {
+					alert(1122);
+				});
+			 var textAttr = {font: "12px Fontin-Sans, Arial", fill: "#000000", "text-anchor": "start"};
+			 r.print(320, 240, "汉字", r.getFont("1", 800), 60).attr({fill: "#f00"});
+			 r.text(320, 240, "汉字").attr(textAttr);
+			   
+			
+			var step, radius;
+			for ( var i = 0; i < 5; i++) {
+				step = document.getElementById("step" + (i+1));
+// 				console.log(step.offsetWidth);
+// 				console.log(step.offsetHeight);
+// 				console.log(step.scrollLeft);
+// 				console.log(step.scrollTop);
+// 				console.log(r.getPointAtLength().x);
+				radius = Math.sqrt(step.offsetWidth * step.offsetWidth + step.offsetHeight*step.offsetHeight);
+				r.circle(step.scrollLeft + step.offsetWidth / 2, step.scrollTop + step.offsetHeight / 2, radius)
+					.attr({ stroke: "#999", "stroke-width": 10, "stroke-opacity": 0.5})
+			}
+			    
+		};
+	</script>
+	<style type="text/css">
+		.step {
+			font: bolder 24px "宋体";
+			margin: 0 0 10 0;
+			padding: 0 0 10 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="flag">
+		<span id="step1" class="step">名称</span><img alt="向右" src="../../images/test/sign_in.png">
+		<span id="step2" class="step">检查项</span><img alt="向右" src="../../images/test/sign_in.png">
+		<span id="step3" class="step">分配对象</span><img alt="向右" src="../../images/test/sign_in.png">
+		<span id="step4" class="step">执行方式</span><img alt="向右" src="../../images/test/sign_in.png">
+		<span id="step5" class="step">完成</span><img alt="向右" src="../../images/test/sign_in.png">
+    </div>
+    <div></div>
+    <img src="../../images/test/ball_green.png" alt="策略" title="策略"/><span>安全检查</span>
+</body>
+</html>

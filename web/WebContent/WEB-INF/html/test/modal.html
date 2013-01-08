@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bootstrap:模态窗口</title>
+<!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../../css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../images/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../images/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../images/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../images/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	<button value="模态窗口" title="模态窗口" data-toggle="modal" data-target="#ratyService">模态窗口</button>
+	
+	<div id="ratyService" class="modal fade hide">
+            
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3>添加收藏: 我买过这个服务</h3>
+      </div><!--Modal header-->
+      <div class="modal-body">
+       <div class="row">
+      <div  class="span1"></div>
+       <div class="span4 ">
+        <h3>求评价(@^_^@) : </h3>
+        </div>
+        <div  class="span4" id="ratingstar"  ></div>
+        <div  class="span1" id="target"></div>
+     </div>
+      </div><!--Modal body-->
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" >Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+      </div><!--Modal footer-->
+    </div> <!--Modal-->
+    
+    <script src="../../js/jquery-1.7.2.min.js"></script>
+    <script src="../../js/bootstrap/bootstrap-transition.js"></script>
+    <script src="../../js/bootstrap/bootstrap-alert.js"></script>
+    <script src="../../js/bootstrap/bootstrap-modal.js"></script>
+    <script src="../../js/bootstrap/bootstrap-dropdown.js"></script>
+    <script src="../../js/bootstrap/bootstrap-scrollspy.js"></script>
+    <script src="../../js/bootstrap/bootstrap-tab.js"></script>
+    <script src="../../js/bootstrap/bootstrap-tooltip.js"></script>
+    <script src="../../js/bootstrap/bootstrap-popover.js"></script>
+    <script src="../../js/bootstrap/bootstrap-button.js"></script>
+    <script src="../../js/bootstrap/bootstrap-collapse.js"></script>
+    <script src="../../js/bootstrap/bootstrap-carousel.js"></script>
+    <script src="../../js/bootstrap/bootstrap-typeahead.js"></script>
+    
+</body>
+</html>

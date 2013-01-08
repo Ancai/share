@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<meta charset="utf-8">
+<title>找一找,信息导航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="找一找，信息导航，网址大全，我的网址，我的上网记录，搜索，搜索引擎大全">
+<meta name="author" content="AncaiLiang">
+
+<!-- Le styles -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
+<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+<!-- valid Form -->
+<!-- custom style -->
+<link href="../css/custom.css" rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="../images/favicon.ico?v=2.4">
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="../images/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="../images/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="../images/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="../images/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> 
+<!-- 				<a class="brand" href="#">找一找</a> -->
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="#"><i class="icon-home icon-white"></i></a></li>
+						<li><a href="iSite.html">我的网址</a></li>
+						<li><a href="#dateLabel" id="dateLabel"></a></li>
+					</ul>
+					<ul class="nav pull-right">
+						 <li><a id="loginLabel" href="login.html">登录</a></li>
+						 <li><a id="registLabel" href="register.html">注册</a></li>
+						 <li><a href="#" id="userLabel" style="display: none;"></a></li>
+						 <li><a href="#" id="exitLabel" style="display: none;">[退出]</a></li>
+					</ul>
+						
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	
+	<div id="mySite" class="modal fade hide">           
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h3>添加网址</h3>
+	  </div><!--Modal header-->
+	  <div class="modal-body">
+	   <form class="form-horizontal" id="mySiteForm" method="post">
+	        <fieldset>
+	          <div class="control-group">
+	            <label class="control-label" for="focusedInput">名称：</label>
+	            <div class="controls">
+	              <input class="input-xlarge focused inputxt" id="mySite_name" type="text" name="name" >	  
+	              <span class="help-inline" id="mySite_nameTip"></span>
+	            </div>
+	          </div>
+	          <div class="control-group">
+	            <label class="control-label" for="focusedInput">网址：</label>
+	            <div class="controls">
+	              <input class="input-xlarge focused" id="mySite_url" type="text" name="url" >
+	              <span class="help-inline" id="mySite_urlTip"></span>
+	            </div>
+	          </div>
+	          <input type="button" class="btn" value="确定" id="mySite_submit">
+	          <div class="control-group error hide" id="mySite_formTip">
+	            <div class="controls">
+	              <span class="help-inline">网址添加失败！</span>
+	            </div>
+	          </div>
+	        </fieldset>
+	      </form>
+	  </div><!--Modal body-->
+	  <!--<div class="modal-footer">
+	    <a href="#" class="btn" data-dismiss="modal" id="userLogin" >提交</a>
+	  </div>Modal footer-->
+	</div> <!--Modal：Login-->
+	
+	<div class="container">
+
+		<!-- row of columns -->
+		<div class="row">
+			<!-- Search Engine Form -->
+			<div class="span12">
+				<div class="bs-docs-so">
+					<form class="form-search" id="searchForm" action="" target="_blank">
+						<div class="input-append">
+							<input type="text" name="q" class="span6 search-query" id="queryTxt">
+							<button type="button" class="btn" id="searchBtn">
+								<i class="icon-search"></i>
+							</button>
+						</div>
+
+						<div class="control-group" id="searchType">
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio1" checked>Google
+							</label> <label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio2" >百度
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio3" >搜搜
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio4" >搜狗
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio5" >有道
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio6" >Bing
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio7" >YaHoo
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio8" >狗狗
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio9" >360
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio10" >即刻
+							</label>
+							<label class="radio"> <input type="radio"
+								name="searchRadio" id="searchRadio11" >盘古
+							</label>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span3">
+				<div class="bs-docs-left">
+					<div class="sideCategory" id="sideCategory">
+						<div class="sideColumn">
+							<h2>实用工具</h2>
+							<ul id="tool">
+								<li><a href="http://tools.2345.com/"><i class="icon-list-alt"></i>&nbsp;实用查询</a></li>
+								<li><a href="http://www.1ting.com/"><i class="icon-music"></i>&nbsp;音乐</a></li>
+								<li><a href="http://www.dytt8.net/"><i class="icon-film"></i>&nbsp;电影</a></li>
+								<li><a href="http://tv.youku.com/"><i class="icon-facetime-video"></i>&nbsp;电视剧</a></li>
+								<li><a href="http://image.baidu.com/"><i class="icon-picture"></i>&nbsp;图片</a></li>
+								<li><a href="http://www.4399.com/"><i class="icon-gift"></i>&nbsp;小游戏</a></li>
+							</ul>
+						</div>
+						<div class="line"></div>
+						<div class="sideColumn">
+							<h2>生活服务</h2>
+							<ul>
+								<li><a href="http://www.lecai.com/">彩票</a></li>
+								<li><a href="http://www.hexun.com/">股票</a></li>
+								<li><a href="http://www.taobao.com/">购物</a></li>
+								<li><a href="http://eladies.sina.com.cn/">女性</a></li>
+								<li><a href="http://www.autohome.com.cn/">汽车</a></li>
+								<li><a href="http://funds.hexun.com/">基金</a></li>
+								<li><a href="http://bank.hexun.com/">银行</a></li>
+								<li><a href="http://www.soufun.com/">房产</a></li>
+								<li><a href="http://www.cncn.com/">旅游</a></li>
+								<li><a href="http://map.baidu.com/">地图</a></li>
+								<li><a href="http://www.meishichina.com/">美食</a></li>
+								<li><a href="http://health.pclady.com.cn/">健康</a></li>
+								<li><a href="http://www.nuomi.com/">团购</a></li>
+								<li><a href="http://www.iqiyi.com/dianshiju/">电视</a></li>
+								<li><a href="http://www.tom61.com/">儿童</a></li>
+								<li><a href="http://www.cnmo.com/">手机</a></li>
+								<li><a href="http://www.51edu.com/daxue/">大学</a></li>
+								<li><a href="http://life.21cn.com/">生活</a></li>
+								<li><a href="http://www.chinahr.com/">招聘</a></li>
+								<li><a href="http://www.ttpet.com/">宠物</a></li>
+								<li><a href="http://www.trends.com.cn/">时尚</a></li>
+								<li><a href="http://insurance.hexun.com/">保险</a></li>
+								<li><a href="http://www.99ys.com/">艺术</a></li>
+							</ul>
+						</div>
+						<div class="sideColumn">
+							<h2>休闲娱乐</h2>
+							<ul>
+								<li><a href="http://v.hao.qq.com/movie/index.html">电影</a></li>
+								<li><a href="http://v.hao.qq.com/movie/site.html">视频</a></li>
+								<li><a href="http://www.1ting.com/">音乐</a></li>
+								<li><a href="http://www.4399.com/">游戏</a></li>
+								<li><a href="http://www.qidian.com/Default.aspx">小说</a></li>
+								<li><a href="http://www.huanqiu.com/">新闻</a></li>
+								<li><a href="http://www.meitu.com/">美图</a></li>
+								<li><a href="http://www.d1xz.net/">星座</a></li>
+								<li><a href="http://dongman.hao123.com/">动漫</a></li>
+								<li><a href="http://www.xinhuanet.com/ent/mx.htm">明星</a></li>
+								<li><a href="http://www.tianya.cn/">社区</a></li>
+								<li><a href="http://www.jiayuan.com/">交友</a></li>
+								<li><a href="http://sports.sina.com.cn/">体育</a></li>
+								<li><a href="http://sports.qq.com/nba/">NBA</a></li>
+								<li><a href="http://mil.huanqiu.com/">军事</a></li>
+								<li><a href="http://www.jokeji.cn/">笑话</a></li>
+								<li><a href="http://sports.sina.com.cn/global/">足球</a></li>
+							</ul>
+						</div>
+						<div class="sideColumn">
+							<h2>地方网站</h2>
+							<ul>
+								<li><a href="http://www.beijing.gov.cn/">北京</a></li>
+								<li><a href="http://www.shanghai.gov.cn">上海</a></li>
+								<li><a href="http://www.gd.gov.cn/">广东</a></li>
+								<li><a href="http://www.jiangsu.gov.cn/">江苏</a></li>
+								<li><a href="http://www.zj.gov.cn">浙江</a></li>
+								<li><a href="http://www.shandong.gov.cn/">山东</a></li>
+								<li><a href="http://www.fujian.gov.cn/">福建</a></li>
+								<li><a href="http://www.shanxigov.cn/">陕西</a></li>
+								<li><a href="http://www.ah.gov.cn/">安徽</a></li>
+								<li><a href="http://www.hebei.gov.cn/">河北</a></li>
+								<li><a href="http://www.sc.gov.cn/">四川</a></li>
+								<li><a href="http://www.ln.gov.cn/">辽宁</a></li>
+								<li><a href="http://www.henan.gov.cn/">河南</a></li>
+								<li><a href="http://www.hunan.gov.cn/">湖南</a></li>
+								<li><a href="http://www.hubei.gov.cn/">湖北</a></li>
+								<li><a href="http://www.tj.gov.cn/">天津</a></li>
+								<li><a href="http://www.shanxigov.cn/">山西</a></li>
+								<li><a href="http://www.jl.gov.cn/">吉林</a></li>
+								<li><a href="http://www.yn.gov.cn/">云南</a></li>
+								<li><a href="http://www.gzgov.gov.cn/">贵州</a></li>
+								<li><a href="http://www.hainan.gov.cn/">甘肃</a></li>
+								<li><a href="http://www.nx.gov.cn/">宁夏</a></li>
+								<li><a href="http://www.cq.gov.cn/">重庆</a></li>
+								<li><a href="http://www.xinjiang.gov.cn/">新疆</a></li>
+								<li><a href="http://www.xizang.gov.cn/index.do">西藏</a></li>
+								<li><a href="http://www.qh.gov.cn/">青海</a></li>
+								<li><a href="http://www.hainan.gov.cn/">海南</a></li>
+								<li><a href="http://www.gov.hk">香港</a></li>
+								<li><a href="http://portal.gov.mo/">澳门</a></li>
+								<li><a href="http://www.chinataiwan.org/">台湾</a></li>
+								<li><a href="http://www.jiangxi.gov.cn/">江西</a></li>
+								<li style="width: 80px;"><a href="http://www.nmg.gov.cn/main/nmg/">内蒙古</a></li>
+								<li style="width: 80px;"><a href="http://www.hlj.gov.cn/">黑龙江</a></li>
+							</ul>
+						</div>
+						<div class="sideColumn">
+							<h2>其他类别</h2>
+							<ul>
+								<li><a href="http://www.skycn.com/">软件</a></li>
+								<li><a href="http://mail.163.com/">邮箱</a></li>
+								<li><a href="http://blog.sina.com.cn/">博客</a></li>
+								<li><a href="http://www.360.cn/">杀毒</a></li>
+								<li><a href="http://www.cndesign.com/">设计</a></li>
+								<li><a href="http://diy.pconline.com.cn/">硬件</a></li>
+								<li><a href="http://www.enterdesk.com/">桌面</a></li>
+								<li><a href="http://haiwai.people.com.cn/">国外</a></li>
+								<li><a href="http://www.chinaenglish.com.cn/">英语</a></li>
+								<li><a href="http://www.neea.edu.cn/">考试</a></li>
+								<li><a href="http://www.eol.cn/">教育</a></li>
+								<li><a href="http://www.cnquyi.com/">曲艺</a></li>
+								<li><a href="http://www.stdaily.com/">科技</a></li>
+								<li><a href="http://china.findlaw.cn/">法律</a></li>
+								<li><a href="http://www.gov.cn/">政府</a></li>
+								<li><a href="http://www.pubchn.com/">公益</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span9">
+				<div class="bs-docs-right">
+					<div class="tabbable">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1" data-toggle="tab">名站导航</a></li>
+							<li class="" id="mySite_tab2"><a href="#tab2" data-toggle="tab">我的导航</a></li>
+						</ul>
+						<div class="tab-content"
+							style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+							<div class="tab-pane active" id="tab1">
+								<ul class="famousSiteList">
+									<li><a class="l" href="http://www.qq.com/">腾讯</a>•<a
+										class="r" href="http://qzone.qq.com/" target="_blank">空间</a></li>
+									<li><a class="l" href="http://www.baidu.com/">百度</a>•<a
+										class="r" href="http://tieba.baidu.com/" target="_blank">贴吧</a></li>
+									<li><a class="l" href="http://www.sina.com.cn/">新浪</a>•<a
+										class="r" href="http://www.weibo.com/" target="_blank">微博</a></li>
+									<li><a class="l" href="http://www.163.com/">网易</a>•<a
+										class="r" href="http://mail.163.com/" target="_blank">邮箱</a></li>
+									<li><a class="l" href="http://www.sohu.com/">搜狐</a>•<a
+										class="r" href="http://tv.sohu.com/" target="_blank">视频</a></li>
+									<li><a class="l" href="http://www.ifeng.com/">凤凰</a>•<a
+										class="r" href="http://news.ifeng.com/mil/" target="_blank">军事</a></li>
+									<li><a href="http://www.taobao.com">淘 宝 网</a></li>
+									<li><a href="http://www.paipai.com?PTAG=10079.2.1">拍 拍
+											网</a></li>
+									<li><a href="http://www.renren.com/">人 人 网</a></li>
+									<li><a href="http://www.kaixin001.com/">开 心 网</a></li>
+									<li><a href="http://www.soso.com/">腾讯SOSO</a></li>
+									<li><a href="http://www.google.com.hk">Google谷歌</a></li>
+									<li><a href="http://buy.qq.com?WGTAG=1000.28.1.2">QQ 网
+											购</a></li>
+									<li><a href="http://www.youku.com">优 酷 网</a></li>
+									<li><a href="http://www.tudou.com">土 豆 网</a></li>
+									<li><a href="http://www.iqiyi.com">奇艺高清</a></li>
+									<li><a href="http://www.icbc.com.cn">工商银行</a></li>
+									<li><a href="http://www.10086.cn/service">中国移动</a></li>
+									<li><a href="http://t.qq.com/">腾讯微博</a></li>
+									<li><a href="http://www.4399.com">4399游戏</a></li>
+									<li><a href="http://www.3366.com">3366游戏</a></li>
+									<li><a href="http://www.zhcw.com">中 彩 网</a></li>
+									<li><a href="http://www.people.com.cn/">人 民 网</a></li>
+									<li><a href="http://www.cntv.cn/">CNTV</a></li>
+								</ul>
+								<div class="line"></div>
+								<ul class="famousSiteList">
+									<li><a href="http://www.eastmoney.com/">东方财富</a></li>
+									<li><a href="http://www.autohome.com.cn/">汽车之家</a></li>
+									<li><a href="http://www.bitauto.com/">易 车 网</a></li>
+									<li><a href="http://www.jiayuan.com">世纪佳缘</a></li>
+									<li><a href="http://www.zhenai.com/">珍 爱 网</a></li>
+									<li><a href="http://v.qq.com/zt/variety/thevoice.html">中国好声音</a></li>
+									<li><a href="http://www.58.com">58 同 城</a></li>
+									<li><a href="http://www.ganji.com">赶 集 网</a></li>
+									<li><a href="http://www.pconline.com.cn">太平洋电脑</a></li>
+									<li><a href="http://www.tianya.cn/bbs/">天涯社区</a></li>
+									<li><a href="http://www.mogujie.com/">蘑 菇 街</a></li>
+									<li><a href="http://www.ctrip.com">携程旅行网</a></li>
+									<li><a href="http://www.360buy.com">京东商城</a></li>
+									<li><a href="http://shop.qq.com/">QQ 商 城</a></li>
+									<li><a href="http://www.qunar.com/">去哪儿网</a></li>
+									<li><a href="http://www.12306.cn/">12306火车票</a></li>
+									<li><a href="http://www.rayli.com.cn/">瑞丽女性网</a></li>
+									<li><a href="http://www.zhaopin.com/">智联招聘</a></li>
+									<li><a
+										href="http://www.51buy.com?ls=tsosodh&amp;YTAG=0.11800003300000">易
+											迅 网</a></li>
+									<li><a href="http://www.meituan.com/">美 团 网</a></li>
+									<li><a href="http://www.vancl.com">凡客诚品</a></li>
+									<li><a href="http://www.dangdang.com">当 当 网</a></li>
+									<li><a href="http://www.amazon.cn">亚 马 逊</a></li>
+									<li><a href="http://www.gome.com.cn/">国美电器</a></li>
+								</ul>
+							</div>
+							<div class="tab-pane" id="tab2">
+								<p id="tab2Div"></p>
+								<button id="mysite_Add" class="btn" data-toggle="modal" data-target="#mySite" title="添加"><i id="mysite_Add_icon" class="icon-plus"></i></button>
+								<button id="mysite_Remove" class="btn" title="移除"><i id="mysite_Remove_icon" class="icon-remove"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bs-docs-right2">
+					<div class="categorySiteList">
+						<ul class="siteCategory">
+							<li>
+								<h2>
+									<a href="http://v.hao.qq.com/movie/site.html">视 频</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.youku.com">优酷</a> <a
+										href="http://v.qq.com/">腾讯视频</a> <a href="http://tv.sohu.com">搜狐视频</a>
+									<a href="http://www.tudou.com/">土豆网</a> <a
+										href="http://www.iqiyi.com/">奇艺高清</a> <a
+										href="http://www.xunlei.com/">迅雷看看</a>
+								</div> <a class="more" href="http://v.hao.qq.com/movie/site.html">更多<span>&gt;&gt;</span></a>
+							</li>
+							<li>
+								<h2>
+									<a href="#">小 说</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.qidian.com/">起点</a> <a
+										href="http://www.readnovel.com/">小说阅读网</a> <a
+										href="http://www.xs8.cn/">言情小说吧</a> <a
+										href="http://www.xxsy.net/">潇湘书院</a> <a
+										href="http://www.zongheng.com/">纵横中文网</a> <a
+										href="http://www.hongxiu.com/">红袖添香</a> <a
+										href="http://www.yuanchuang.com/">原创阅读网</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a>
+							</li>
+							<li class="">
+								<h2>
+									<a href="#">游 戏</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.3366.com/">3366游戏</a><a
+										href="http://www.4399.com/">4399游戏</a><a
+										href="http://www.7k7k.com/">7k7k游戏</a><a
+										href="http://games.qq.com/">腾讯游戏</a><a
+										href="http://www.17173.com/">17173</a><a
+										href="http://www.duowan.com/">多玩游戏</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a>
+							</li>
+							<li class=""><h2>
+									<a href="#">新 闻</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://news.sina.com.cn/">新浪新闻</a><a
+										href="http://news.qq.com/">腾讯新闻</a><a
+										href="http://news.ifeng.com/">凤凰新闻</a><a
+										href="http://news.sohu.com/">搜狐新闻</a><a
+										href="http://www.people.com.cn/">人民网</a><a
+										href="http://www.xinhuanet.com/">新华网</a><a
+										href="http://www.huanqiu.com/">环球网</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li class=""><h2>
+									<a href="#">军 事</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://military.china.com/zh_cn/">中华网军事</a><a
+										href="http://news.ifeng.com/mil/">凤凰军事</a><a
+										href="http://www.junshijia.com/">米尔军情网</a><a
+										href="http://mil.huanqiu.com/">环球网军事</a><a
+										href="http://junshi.xilu.com/">西陆军事</a><a
+										href="http://www.tiexue.net/">铁血网</a><a
+										href="http://news.qq.com/zt2012/dyd/">钓鱼岛争端</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+						</ul>
+						<ul class="siteCategory">
+							<li><h2>
+									<a href="#">音 乐</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://music.qq.com/">QQ音乐</a><a
+										href="http://www.1ting.com/">一听音乐网</a><a
+										href="http://mp3.sogou.com/">搜狗音乐</a><a
+										href="http://mbox.kuwo.cn/">酷我音乐盒</a><a
+										href="http://mp3.baidu.com/">百度MP3</a><a
+										href="http://www.9ku.com/">九酷音乐</a><a
+										href="http://voice.5ige.cn/index.jsp">中国好声音</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li class=""><h2>
+									<a href="#">购 物</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://buy.qq.com?WGTAG=1000.28.1.1">QQ网购</a><a
+										href="http://www.taobao.com/">淘宝网</a><a
+										href="http://www.paipai.com?PTAG=10079.2.2">拍拍网</a><a
+										href="http://www.360buy.com/">京东商城</a><a
+										href="http://www.dangdang.com/">当当网</a><a
+										href="http://www.amazon.cn/">亚马逊</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li class=""><h2>
+									<a href="#">财 经</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.eastmoney.com/">东方财富</a><a
+										href="http://finance.qq.com/">腾讯财经</a><a
+										href="http://finance.sina.com.cn/">新浪财经</a><a
+										href="http://www.stockstar.com/">证券之星</a><a
+										href="http://www.hexun.com/">和讯网</a><a
+										href="http://cn.wsj.com">华尔街日报</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li class=""><h2>
+									<a href="#">邮 箱</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://mail.qq.com/">QQ邮箱</a><a
+										href="http://mail.163.com/">163邮箱</a><a
+										href="http://www.126.com/">126邮箱</a><a
+										href="http://mail.cn.yahoo.com/">雅虎邮箱</a><a
+										href="http://mail.sina.com.cn/">新浪邮箱</a><a
+										href="http://www.hotmail.com">Hotmail</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">交 友</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.jiayuan.com/">世纪佳缘</a><a
+										href="http://www.zhenai.com/">珍爱网</a><a
+										href="http://www.baihe.com/">百合网</a><a
+										href="http://fcwr.jstv.com/">非诚勿扰</a><a
+										href="http://www.ipart.cn/">爱情公寓</a><a
+										href="http://www.95195.com/">我在找你</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+						</ul>
+						<ul class="siteCategory">
+							<li><h2>
+									<a href="#">体 育</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://sports.sina.com.cn/">新浪体育</a><a
+										href="http://sports.qq.com/ ">腾讯体育</a><a
+										href="http://sports.sohu.com/">搜狐体育</a><a
+										href="http://www.hupu.com/">虎扑体育</a><a
+										href="http://sports.cntv.cn/">CCTV5直播</a><a
+										href="http://sports.163.com/">网易体育</a><a
+										href="http://www.zhibo8.com/">直播吧</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="http://tuan.qq.com/">团 购</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.lashou.com/">拉手网</a><a
+										href="http://tuan.qq.com/">QQ团购</a><a
+										href="http://www.meituan.com/">美团网</a><a
+										href="http://www.nuomi.com/">糯米网</a><a
+										href="http://www.jumei.com/">聚美优品</a><a
+										href="http://www.ftuan.com/">F团</a>
+								</div> <a class="more" href="http://tuan.qq.com/">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">女 性</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.rayli.com.cn/">瑞丽女性网</a><a
+										href="http://www.pclady.com.cn/">太平洋女性</a><a
+										href="http://lady.qq.com/">腾讯女性</a><a
+										href="http://www.self.com.cn/">悦己女性网</a><a
+										href="http://www.meilishuo.com/">美丽说</a><a
+										href="http://www.mogujie.com/">蘑菇街</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">汽 车</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.autohome.com.cn/">汽车之家</a><a
+										href="http://auto.qq.com/">腾讯汽车</a><a
+										href="http://www.xcar.com.cn">爱卡汽车</a><a
+										href="http://www.bitauto.com">易车网</a><a
+										href="http://www.51auto.com/">51汽车</a><a
+										href="http://auto.sohu.com/">搜狐汽车</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">银 行</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.icbc.com.cn/">工商银行</a><a
+										href="http://www.abchina.com">农业银行</a><a
+										href="http://www.boc.cn/">中国银行</a><a
+										href="http://www.ccb.com/">建设银行</a><a
+										href="http://www.cmbchina.com/">招商银行</a><a
+										href="http://www.bankcomm.com/">交通银行</a>
+								</div> <a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+						</ul>
+						<ul class="siteCategory">
+							<li><h2>
+									<a href="#">旅 游</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.qunar.com/">去哪儿网</a><a
+										href="http://go.qq.com">QQ旅游</a><a
+										href="http://www.ctrip.com/">携程旅行网</a><a
+										href="http://jipiao.kuxun.cn">酷讯飞机票</a><a
+										href="http://www.mafengwo.cn">蚂蜂窝旅游</a><a
+										href="http://www.lvmama.com">驴妈妈旅游</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">电 脑</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.pconline.com.cn/">太平洋电脑</a><a
+										href="http://www.zol.com.cn/">中关村在线</a><a
+										href="http://www.pcpop.com/">泡泡网</a><a
+										href="http://www.skycn.com/">天空软件</a><a
+										href="http://download.tech.qq.com">腾讯下载</a><a
+										href="http://www.it168.com/">IT168电脑</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">手 机</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.imobile.com.cn/">手机之家</a><a
+										href="http://www.cnmo.com/">手机中国</a><a
+										href="http://www.app111.com/">苹果园</a><a
+										href="http://mobile.pconline.com.cn/">太平洋手机</a><a
+										href="http://www.10010.com">中国联通</a><a
+										href="http://www.10086.cn/service/">中国移动</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">社 交</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://qzone.qq.com/">QQ空间</a><a
+										href="http://www.mop.com/">猫扑</a><a
+										href="http://tieba.baidu.com">百度贴吧</a><a
+										href="http://www.tianya.cn/">天涯社区</a><a
+										href="http://www.weibo.com/">新浪微博</a><a
+										href="http://www.renren.com/">人人网</a><a
+										href="http://www.pengyou.com/">朋友网</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">招 聘</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.zhaopin.com/">智联招聘</a><a
+										href="http://www.51job.com/">前程无忧</a><a
+										href="http://www.ganji.com/zhaopin/ ">赶集招聘</a><a
+										href="http://www.baijob.com">百伯网</a><a
+										href="http://www.lietou.com">猎聘网</a><a
+										href="http://www.chinahr.com">中华英才网</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+						</ul>
+						<ul class="siteCategory">
+							<li><h2>
+									<a href="#">彩 票</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.zhcw.com/">中彩网</a><a
+										href="http://www.lottery.gov.cn/">中国体彩网 </a><a
+										href="http://www.500wan.com/">500wan彩票</a><a
+										href="http://888.qq.com/static/kaijiang/dlt/">大乐透开奖</a><a
+										href="http://888.qq.com/static/kaijiang/ssq/">双色球开奖 </a><a
+										href="http://888.qq.com/static/info/">分析图表 </a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">生 活</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.ganji.com">赶集网</a><a
+										href="http://www.soufun.com/">搜房网</a><a
+										href="http://www.58.com">58同城网</a><a
+										href="http://open.163.com/">网易公开课</a><a
+										href="http://www.aigou.com/">爱狗网</a><a
+										href="http://www.chinabaike.com/">中国百科网</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">美 图</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://photo.xitek.com/">色影无忌</a><a
+										href="http://www.tianya.cn/publicforum/articleslist/0/no04.shtml ">天涯贴图专区</a><a
+										href="http://www.tpzj.com/">图片之家</a><a
+										href="http://www.fengniao.com/">蜂鸟网</a><a
+										href="http://pic.yesky.com/">天极图片</a><a
+										href="http://pic.tiexue.net/">铁血图片</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">页 游</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://wang.qq.com/">王朝霸域</a><a
+										href="http://qqsh.qq.com/">QQ水浒</a><a href="http://7.qq.com/">七雄争霸</a><a
+										href="http://fight.qq.com/">Q宠大乐斗</a><a
+										href="http://xia.qq.com/">寻侠</a><a
+										href="http://17roco.qq.com/">洛克王国</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+						</ul>
+						<ul class="siteCategory">
+							<li><h2>
+									<a href="#">美 食</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://meishi.qq.com/">QQ美食</a><a
+										href="http://www.dianping.com/">大众点评网</a><a
+										href="http://www.meishichina.com/ ">美食天下</a><a
+										href="http://jishi.cntv.cn/program/sjsdzg/index.shtml">舌尖上的中国</a><a
+										href="http://www.xiachufang.com/">下厨房</a><a
+										href="http://food.39.net/">39健康饮食</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">网 游</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://cf.qq.com/">穿越火线</a><a
+										href="http://dnf.qq.com/">地下城与勇士</a><a
+										href="http://x5.qq.com/">QQ炫舞</a><a
+										href="http://speed.qq.com/">QQ飞车</a><a
+										href="http://lol.qq.com/">英雄联盟</a><a href="http://yl.qq.com/">御龙在天</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+							<li><h2>
+									<a href="#">酷 站</a>
+								</h2>
+								<div class="siteLink">
+									<a href="http://www.qiushibaike.com/">糗事百科</a><a
+										href="http://www.jxedt.com/">驾校一点通</a><a
+										href="http://cet.99sushe.com/">四六级查分</a><a
+										href="http://www.leho.com/">爱乐活</a><a
+										href="http://baozoumanhua.com/">暴走漫画</a><a
+										href="http://www.12306.cn/">12306火车票</a>
+								</div>
+								<a class="more" href="#">更多<span>&gt;&gt;</span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<!-- other SI -->
+			<div class="span12">
+				<div class="bs-docs-bottom">
+					<ul class="otherSite">
+						<li><h2>
+								<a style="color: #2A73BB;" href="#">好站轮播</a>
+							</h2>
+							<div class="siteLink">
+								<a href="http://www.qiushibaike.com/">糗事百科</a><a
+									href="http://songshuhui.net/">科学松鼠会</a><a
+									href="http://trippanda.com/">熊猫旅游</a><a
+									href="http://www.qdmm.com/">起点女生网</a><a
+									href="http://weather.kuuke.com">酷客天气</a><a
+									href="http://www.u148.net/">有意思吧</a><a
+									href="http://www.deskcity.com/">桌面城市</a><a
+									href="http://jandan.net/">煎蛋</a><a
+									href="http://www.funnywow.cn/">粉泥网</a><a
+									href="http://buy.caomeipai.com/">草莓派</a><a
+									href="http://www.chinaticket.com/">中票在线</a><a
+									href="http://www.xiachufang.com/">下厨房</a><a
+									href="http://kxt.fm/">邻居的耳朵</a>
+							</div>
+							<a href="#" class="more">更多<span>&gt;&gt;</span></a></li>
+						<li><h2>
+								<a style="color: #2A73BB;" href="#">常用软件</a>
+							</h2>
+							<div class="siteLink">
+								<a href="http://im.qq.com/qq/all.shtml">QQ</a><a
+									href="http://web.qq.com/">网页QQ</a><a
+									href="http://browser.qq.com/">QQ浏览器</a><a
+									href="http://guanjia.qq.com/">QQ电脑管家</a><a
+									href="http://www.baofeng.com/">暴风影音</a><a
+									href="http://player.qq.com/">QQ影音</a><a
+									href="http://www.pptv.com/">PPTV</a><a
+									href="http://dl.pconline.com.cn/">太平洋下载</a><a
+									href="http://www.skycn.com/">天空软件站</a><a
+									href="http://mobile.qq.com/safe/">腾讯手机管家</a><a
+									href="http://dl.xunlei.com/">迅雷</a><a
+									href="http://cidian.youdao.com/">有道词典</a><a
+									href="http://weixin.qq.com/">微信</a>
+							</div>
+							<a href="#" class="more">更多<span>&gt;&gt;</span></a></li>
+						<li><h2>
+								<a style="color: #2A73BB;" href="#">游戏专题</a>
+							</h2>
+							<div class="siteLink">
+								<a href="http://cf.qq.com/">穿越火线</a><a
+									href="http://speed.qq.com/index.shtml">QQ飞车</a><a
+									href="http://games.qq.com/zt/2009/zwjs/">植物大战僵尸</a><a
+									href="http://www.3366.com/game/56234.shtml">洛克王国</a><a
+									href="http://game.7.qq.com/?sPageFrom=haoqq">七雄争霸</a><a
+									href="http://game.9.qq.com/?sPageFrom=haoqq">QQ九仙</a><a
+									href="http://dnf.qq.com/">地下城与勇士</a><a
+									href="http://au.9you.com/">劲舞团</a><a
+									href="http://www.lineage2.com.cn/">天堂Ⅱ</a><a
+									href="http://games.qq.com/d/onlinegame/2/1337/">弹弹堂</a><a
+									href="http://www.51mole.com/">摩尔庄园</a><a
+									href="http://games.qq.com/z/qqsm/">全球使命</a><a
+									href="http://www.3366.com/game/14840.shtml">连连看</a>
+							</div>
+							<a href="#" class="more">更多<span>&gt;&gt;</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer>
+			<p>&copy; 颚ICP备12001376号-2 2012 &nbsp;&nbsp;找一找信息导航  &nbsp;&nbsp; 反馈  &nbsp;&nbsp; 联系我们</p>
+		</footer>
+
+	</div>
+	<!-- /container -->
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="../js/bootstrap/bootstrap-transition.js"></script>
+	<script src="../js/bootstrap/bootstrap-alert.js"></script>
+	<script src="../js/bootstrap/bootstrap-modal.js"></script>
+	<script src="../js/bootstrap/bootstrap-dropdown.js"></script>
+<!-- 	<script src="../js/bootstrap/bootstrap-scrollspy.js"></script> -->
+	<script src="../js/bootstrap/bootstrap-tab.js"></script>
+<!-- 	<script src="../js/bootstrap/bootstrap-tooltip.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-popover.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-button.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-collapse.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-carousel.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-typeahead.js"></script> -->
+	<!-- Jquery plugin -->
+	<!-- <script src="../js/jqueryPlugin/Validform_v5.1_min.js" type="text/javascript"></script> -->
+	<script src="../js/jqueryPlugin/formValidator4.1.0/formValidator-4.1.0.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="../js/jqueryPlugin/formValidator4.1.0/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+    <!-- Custom js -->
+    <script src="../js/tool/lunarCalendar.js" type="text/javascript"></script>
+    <script src="../js/tool/cookie.js" type="text/javascript"></script>
+    <script src="../js/public.js" type="text/javascript"></script>
+    <script src="../js/index.js" type="text/javascript"></script>
+
+
+</body>
+</html>

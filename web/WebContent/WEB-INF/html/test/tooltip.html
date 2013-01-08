@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bootstrap:tooltip</title>
+<!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="../../css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../images/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../images/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../images/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../images/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+	
+    
+    <script src="../../js/jquery-1.7.2.min.js"></script>
+    <script src="../../js/bootstrap/bootstrap-transition.js"></script>
+    <script src="../../js/bootstrap/bootstrap-alert.js"></script>
+    <script src="../../js/bootstrap/bootstrap-modal.js"></script>
+    <script src="../../js/bootstrap/bootstrap-dropdown.js"></script>
+    <script src="../../js/bootstrap/bootstrap-scrollspy.js"></script>
+    <script src="../../js/bootstrap/bootstrap-tab.js"></script>
+    <script src="../../js/bootstrap/bootstrap-tooltip.js"></script>
+    <script src="../../js/bootstrap/bootstrap-popover.js"></script>
+    <script src="../../js/bootstrap/bootstrap-button.js"></script>
+    <script src="../../js/bootstrap/bootstrap-collapse.js"></script>
+    <script src="../../js/bootstrap/bootstrap-carousel.js"></script>
+    <script src="../../js/bootstrap/bootstrap-typeahead.js"></script>
+    
+    <a id="first" href="#" rel="tooltip" data-placement="top" data-original-title="first tooltip" data-trigger="hover">别摸我</a>
+	<div class="tooltip-demo well">
+      <p class="muted" style="margin-bottom: 0;">Tight pants next level keffiyeh 
+      	<a id="second" href="#" rel="tooltip" data-original-title="first tooltip">you probably</a>
+      	 haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. 
+      	 Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel 
+      	 <a href="#" rel="tooltip" title="Another tooltip">have a</a> 
+      	 terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. 
+      	 Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. 
+      	 A really ironic artisan 
+      	 <a href="#" rel="tooltip" title="Another one here too">whatever keytar</a>, scenester farm-to-table banksy Austin 
+      	 <a href="#" rel="tooltip" title="The last tip!">twitter handle</a> 
+      	 freegan cred raw denim single-origin coffee viral.
+      </p>
+    </div>
+    <div class="span3">
+	 <a id="popover" class="btn  btn-success" type="submit" rel="popover" title="推荐到射交网络" data-content="你以为我会告诉你渣浪老删帖吗？！"><i class=" icon-white icon-share"></i>  推荐</a>
+	</div>
+    <script type="text/javascript">
+    $("#first, #second").hover(function() {
+    	$(this).tooltip("show");
+    });
+    $("#popover").hover(function() {
+    	$(this).popover("show");
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>raphael: Ball</title>
+	<link rel="shortcut icon" href="../../images/favicon.ico?v=2.4">
+	<script type="text/javascript" src="../../js/compent/raphael-min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		Raphael.fn.ball = function(x, y, r, hue) {
+			hue = hue || 0;
+			return this.set(
+				this.ellipse(x, y + r - r / 5, r, r / 2).attr({fill: "rhsb(" + hue + ", 1, .25) - hsb(" + hue + ", 1, .25)", stroke: "none", opacity: 0}),
+				this.ellipse(x, y, r, r).attr({fill: "r(.5,.9)hsb(" + hue + ", 1, .75)-hsb(" + hue + ", .5, .25)", stroke: "none"}),
+                this.ellipse(x, y, r - r / 5, r - r / 20).attr({stroke: "none", fill: "r(.5,.1)#ccc-#ccc", opacity: 0})
+			);
+		};
+		var eventCli = function () {
+			alert(1);
+		}
+		window.onload = function() {
+// 			var x = document.getElementById("x");
+// 			var y = document.getElementById("y");
+// 			var r = document.getElementById("r");
+			var R = Raphael("holder"), x = 10, y = 10, r = 30;
+			
+// 			for ( var i = 0; i < 10; i++) {
+// 				R.ball(x + Math.random() * 1000 + 10, y + Math.random() * 800 + 10, r, Math.random());
+// 			}
+			var ball = R.ball(x + Math.random() * 1000 + 10, y + Math.random() * 800 + 10, r, Math.random());
+			var circle = R.circle(200, 100, 60).attr({stroke: "none", fill: "#000"})
+			circle.onmouseover  = function() {
+				alert(2);
+			};
+			//ball.onclick = eventCli();
+
+// 			var runBtn = document.getElementById("run");
+// 			runBtn.onclick = function() {
+// 				R.clear();
+// 				var random = Math.random();
+// 				console.log(random);
+// 				R.ball(x.value, y.value, r.value, random);
+// 			};
+		};
+	</script>
+</head>
+<body>
+	x:<input type="text" id="x" value="310">
+	y:<input type="text" id="y" value="180">
+	r:<input type="text" id="r" value="150">
+	<input type="button" id="run" value="Run">
+	<div id="holder" style="width: 1000px;height: 800px;"></div>
+</body>
+</html>

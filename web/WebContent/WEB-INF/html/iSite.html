@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+<meta charset="utf-8">
+<title>找一找,我的网址</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="找一找，信息导航，网址大全，我的网址，我的上网记录，搜索，搜索引擎大全">
+<meta name="author" content="AncaiLiang">
+
+<!-- Le styles -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
+<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+<!-- valid Form -->
+<!-- custom style -->
+<link href="../css/custom.css" rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="../images/favicon.ico?v=2.4">
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="../images/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="../images/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="../images/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="../images/apple-touch-icon-57-precomposed.png">
+</head>
+
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> 
+<!-- 				<a class="brand" href="#">找一找</a> -->
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="index.html"><i class="icon-home icon-white"></i></a></li>
+						<li><a href="#about">我的网址</a></li>
+						<li><a href="#dateLabel" id="dateLabel"></a></li>
+					</ul>
+					<ul class="nav pull-right">
+						 <li><a id="loginLabel" href="login.html">登录</a></li>
+						 <li><a id="registLabel" href="register.html">注册</a></li>
+						 <li><a href="#" id="userLabel" style="display: none;"></a></li>
+						 <li><a href="#" id="exitLabel" style="display: none;">[退出]</a></li>
+					</ul>
+						
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	
+	<div id="mySite" class="modal fade hide">           
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h3>添加网址</h3>
+	  </div><!--Modal header-->
+	  <div class="modal-body">
+	   <form class="form-horizontal" id="mySiteForm" method="post">
+	        <fieldset>
+	          <div class="control-group">
+	            <label class="control-label" for="focusedInput">名称：</label>
+	            <div class="controls">
+	              <input class="input-xlarge focused inputxt" id="mySite_name" type="text" name="name" >	  
+	              <span class="help-inline" id="mySite_nameTip"></span>
+	            </div>
+	          </div>
+	          <div class="control-group">
+	            <label class="control-label" for="focusedInput">网址：</label>
+	            <div class="controls">
+	              <input class="input-xlarge focused" id="mySite_url" type="text" name="url" >
+	              <span class="help-inline" id="mySite_urlTip"></span>
+	            </div>
+	          </div>
+	          <input type="button" class="btn" value="确定" id="mySite_submit">
+	          <div class="control-group error hide" id="mySite_formTip">
+	            <div class="controls">
+	              <span class="help-inline">网址添加失败！</span>
+	            </div>
+	          </div>
+	        </fieldset>
+	      </form>
+	  </div><!--Modal body-->
+	  <!--<div class="modal-footer">
+	    <a href="#" class="btn" data-dismiss="modal" id="userLogin" >提交</a>
+	  </div>Modal footer-->
+	</div> <!--Modal：Login-->
+	
+	<div class="container">
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th width="20%"></th>
+		        <th></th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>综合</td>
+		        <td>百度   谷歌</td>
+		      </tr>
+		      <tr>
+		        <td><button class="btn btn-primary" href="#">Primary</button></td>
+		        <td><code>btn btn-primary</code></td>
+		      </tr>
+		      <tr>
+		        <td><button class="btn btn-info" href="#">Info</button></td>
+		        <td><code>btn btn-info</code></td>
+		      </tr>
+		      <tr>
+		        <td><button class="btn btn-success" href="#">Success</button></td>
+		        <td><code>btn btn-success</code></td>
+		      </tr>
+		      <tr>
+		        <td><button class="btn btn-warning" href="#">Warning</button></td>
+		        <td><code>btn btn-warning</code></td>
+		      </tr>
+		      <tr>
+		        <td><button class="btn btn-danger" href="#">Danger</button></td>
+		        <td><code>btn btn-danger</code></td>
+		      </tr>
+		      <tr>
+		        <td><button class="btn btn-inverse" href="#">Inverse</button></td>
+		        <td><code>btn btn-inverse</code></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		<hr>
+		<footer>
+			<p>&copy; 颚ICP备12001376号-2 2012 &nbsp;&nbsp;找一找信息导航  &nbsp;&nbsp; 反馈  &nbsp;&nbsp; 联系我们</p>
+		</footer>
+	</div>
+	<!-- /container -->
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="../js/bootstrap/bootstrap-transition.js"></script>
+	<script src="../js/bootstrap/bootstrap-alert.js"></script>
+	<script src="../js/bootstrap/bootstrap-modal.js"></script>
+	<script src="../js/bootstrap/bootstrap-dropdown.js"></script>
+<!-- 	<script src="../js/bootstrap/bootstrap-scrollspy.js"></script> -->
+	<script src="../js/bootstrap/bootstrap-tab.js"></script>
+<!-- 	<script src="../js/bootstrap/bootstrap-tooltip.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-popover.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-button.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-collapse.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-carousel.js"></script> -->
+<!-- 	<script src="../js/bootstrap/bootstrap-typeahead.js"></script> -->
+	<!-- Jquery plugin -->
+	<!-- <script src="../js/jqueryPlugin/Validform_v5.1_min.js" type="text/javascript"></script> -->
+	<script src="../js/jqueryPlugin/formValidator4.1.0/formValidator-4.1.0.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="../js/jqueryPlugin/formValidator4.1.0/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+    <!-- Custom js -->
+    <script src="../js/tool/lunarCalendar.js" type="text/javascript"></script>
+    <script src="../js/tool/cookie.js" type="text/javascript"></script>
+    <script src="../js/public.js" type="text/javascript"></script>
+    <script src="../js/index.js" type="text/javascript"></script>
+
+
+</body>
+</html>

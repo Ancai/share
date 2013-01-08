@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>raphael(拉斐尔)</title>
+	<link rel="shortcut icon" href="../../images/favicon.ico?v=2.4">
+	<script type="text/javascript" src="../../js/compent/raphael-min.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var paper = Raphael("canvas", 640, 480),
+				btn = document.getElementById("run"),
+				cd = document.getElementById("code");
+			(btn.onclick = function() {
+				paper.clear();
+				paper.rect(0, 0, 640, 480, 10).attr({fill: "#fff", stroke: "none"});
+				try {
+					(new Function("paper", "window", "document", cd.value)).call(paper, paper);
+					//(new Function("paper", "window", "document", cd.value)).apply(paper, [paper]);
+					//paper.circle(320, 240, 60)
+					//	.animate({fill: "#223fa3", stroke: "#000", "stroke-width": 80, "stroke-opacity": 0.5}, 2000);
+				} catch (e) {
+					// TODO: handle exception
+					alert(e.message || e);
+				}
+			})();
+		};
+	</script>
+</head>
+<body>
+	<h1>Raphaël Playground</h1>
+	<div id="canvas"></div>
+	<div><textarea id="code" style="width: 918px;">paper.circle(320, 240, 60).animate({fill: "#223fa3", stroke: "#000", "stroke-width": 80, "stroke-opacity": 0.5}, 2000);</textarea></div>
+	<div><button id="run" type="button">Run</button></div>
+</body>
+</html>

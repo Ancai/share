@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>饼图</title>
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript" src="../../js/amcharts/amcharts.js"></script>
+<script type="text/javascript" src="../../js/tool/chart.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var chartData = getAjaxJson(basePath + "/chart/pieData");
+		
+		var tempChart = pieChart(chartData, "饼状图");
+		tempChart.addListener('clickSlice', function(eventObj) {
+			alert(eventObj.dataItem.color);
+			alert(eventObj.dataItem.title);
+			alert(eventObj.dataItem.value);
+		});
+		tempChart.write(chartdiv);
+	});
+</script>
+</head>
+
+<body>
+	<div id="chartdiv" style="width: 800px;height: 600px;"></div>
+</body>
+</html>

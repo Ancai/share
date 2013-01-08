@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+body {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	font-size: 12px;
+	position: relative;
+	height:100%;
+}
+#main {
+	width: 100%;
+	height: 600px;
+	margin: 0 0 0 0;
+}
+a {
+	text-decoration: none;
+}
+a:VISITED {
+	color: gray;
+}
+.treeI {
+	font-size: 18px;
+	font-weight: bold;
+}
+.treeII {
+	font-size: 14px;
+	font-weight: bolder;
+}
+.treeIII {
+	font-size: 12px;
+	font-weight: normal;
+}
+li {
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+table{
+	width: 100%;
+}
+tr.odd{
+	background: #fff;
+}
+tr.even{
+	background: #eee;
+}
+/*表格*/
+div.datagrid_div{
+	width: 100%;
+	border: 1px solid #999;
+}
+table.datagrid{
+	border-collapse: separate;
+}
+table.datagrid th{
+	text-align: left;
+	background: #ddd;
+	padding: 3px;
+	border: 0px solid #fff;
+}
+table.datagrid td{
+	padding: 3px;
+	border: 0px solid #fff;
+	font: normal 12px 宋体;
+}
+tr:hover, tr.hover{
+	background: #9cf;
+}
+
+/*分页样式*/
+.pages{ width:100%; text-align:left; padding:10px 0; clear:both;}
+.pages span,.pages a,.pages b{ font-size:12px; font-family:Arial, Helvetica,
+sans-serif; margin:0 2px;}
+.pages span font{ color:#f00; font-size:12px;}
+.pages a,.pages b{ border:1px solid #5FA623; background:#fff; padding:2px
+6px; text-decoration:none}
+.pages span { padding-right:10px }
+.pages b,.pages a:hover{ background:#7AB63F; color:#fff;}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>拖拽</title>
+</head>
+<script type="text/javascript" src="drag.js"></script>
+<body>
+	<!-- 要拖动的元素 -->
+	<div style="position: absolute; left: 100px; top: 100px; width: 250px; background-color: white; border: solid black;">
+		<!-- 通过标题栏，拖动整个元素 -->
+		<div style="background-color: gray; border-bottom: dotted black; padding: 3px; font-family: sans-serif; font-weight: bold;"
+		onmousedown="drag(this.parentNode, event)">拖动我</div>
+		<!-- 可拖动元素的内容 -->
+		<div>
+			<p>这是一个测试。测试中，测试中，测试中，</p>
+			<p>测试</p>
+			<p>测试</p>
+		</div>
+	</div>
+</body>
+</html>

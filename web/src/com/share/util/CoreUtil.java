@@ -16,6 +16,10 @@ import java.util.List;
  *         创建时间：2012-8-4 下午02:25:29 
  */
 public final class CoreUtil { 
+	/** 常量：26个英文字母(含大小写)和数字 **/
+	private static final char[] CHAR_ARRAY = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 
+	    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'g', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'G', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     
     /**
      * 通用加密：SHA(或MD5)
@@ -130,5 +134,14 @@ public final class CoreUtil {
 		}
 		
 		return jsonBuff.replace(jsonBuff.length()-1, jsonBuff.length(), "]").toString();
+	}
+	
+	/**
+	 * 获得随机字符
+	 * 
+	 * @return char 字符：数字或字母
+	 */
+	public static char randomChar() {
+		return CHAR_ARRAY[(int)(Math.random() * 46)];
 	}
 }

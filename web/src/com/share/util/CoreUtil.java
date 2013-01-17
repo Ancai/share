@@ -3,6 +3,7 @@ package com.share.util;
 import java.security.MessageDigest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -143,5 +144,26 @@ public final class CoreUtil {
 	 */
 	public static char randomChar() {
 		return CHAR_ARRAY[(int)(Math.random() * 46)];
+	}
+	
+	/**
+	 * 日期 --yyyy-MM-dd HH:mm:ss SSS--> 日期
+	 * 		SQLServer中的日期带有毫秒
+	 * 
+	 * @param sourceDt 源日期
+	 * @return Date
+	 */
+	public static String compareDt2Hql(Date sourceDt) {
+		Calendar c = Calendar.getInstance();
+		c.setTime(sourceDt);
+		StringBuffer hqlBuff = new StringBuffer();
+		hqlBuff.append(" AND YEAR(this.planTime) = "+ c.get(Calendar.YEAR) +" AND ");
+		hqlBuff.append("MONTH(this.planTime) = "+ (c.get(Calendar.MONTH)+ 1) +" AND ");
+		hqlBuff.append("DAY(this.planTime) = "+ c.get(Calendar.DAY_OF_MONTH) +" AND ");//moth 从0开始
+		hqlBuff.append("HOUR(this.planTime) = "+ c.get(Calendar.HOUR_OF_DAY) +" AND ");
+		hqlBuff.append("MINUTE(this.planTime) = "+ c.get(Calendar.MINUTE) +" AND ");
+		hqlBuff.append("SECOND(this.planTime) = "+ c.get(Calendar.SECOND) + " ");
+		
+		return hqlBuff.toString();
 	}
 }

@@ -57,6 +57,8 @@ git：Ancai/ancai9git
 		xmlschema-core-2.0.3.jar
 		xmlsec-1.5.2.jar
 		xmltooling-1.3.2-1.jar
+2013-1-25 POI组件
+        poi-3.9-X.jar
 		
 		
 		

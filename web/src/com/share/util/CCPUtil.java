@@ -3,6 +3,8 @@
  */
 package com.share.util;
 
+import org.apache.commons.lang.ArrayUtils;
+
 /** 
  *         工具类：CCP项目的逻辑处理密切相关
  *
@@ -33,5 +35,35 @@ public final class CCPUtil {
 		buf.append("'"+ip2+"'");
 		
 		return buf.toString();
+	}
+	
+	/**
+	 * 将数字分解成字符串，适用于内网特定的逻辑规则
+	 * 		例如：15 ---> 1,2,4,8; 9 ---> 1,8
+	 * 
+	 * @param str
+	 * @return String
+	 */
+	public static String numSplit(String str) {
+		String val = "";
+		String[] nums = {"1", "2", "4", "8", "16", "32", "64", "128", "256", "512", "1024", "2048", "4096", "8192"};
+		char[] chars = Integer.toBinaryString(Integer.valueOf(str)).toCharArray();
+		if (ArrayUtils.contains(nums, str)) {
+			val = str;
+		} else {
+			StringBuffer sbu = new StringBuffer();
+			for (int i = 0; i < chars.length; i++) {
+				if (chars[i] == '1') {
+					sbu.append(nums[i]);
+					sbu.append(",");
+				}
+			}
+			if (sbu.charAt(sbu.length()-1) == ',') {//去除最后一个逗号
+				sbu.deleteCharAt(sbu.length()-1);
+			}
+			val = sbu.toString();
+		}
+		
+		return val;
 	}
 }

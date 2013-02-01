@@ -1,0 +1,20 @@
+@charset "utf-8";
+.datagrid .panel-body{
+	overflow:auto;
+	border:0px solid #99BBE8;
+	border-top-width:0px;
+}
+
+.window {
+	font-size:12px;
+	position:absolute;
+	overflow:hidden;
+	background: url('images/panel_title.png') repeat-x top center white !important;
+	padding:5px;
+	border:1px solid #99BBE8;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	z-index:10000;
+}

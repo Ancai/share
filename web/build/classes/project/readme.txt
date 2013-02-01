@@ -59,7 +59,8 @@ git：Ancai/ancai9git
 		xmltooling-1.3.2-1.jar
 2013-1-25 POI组件
         poi-3.9-X.jar
-		
+2013-2-1 Struts2 jar包
+        struts2-core-2.3.8.jar
 		
 		
 		

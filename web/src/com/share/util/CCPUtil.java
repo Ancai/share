@@ -47,11 +47,13 @@ public final class CCPUtil {
 	public static String numSplit(String str) {
 		String val = "";
 		String[] nums = {"1", "2", "4", "8", "16", "32", "64", "128", "256", "512", "1024", "2048", "4096", "8192"};
-		char[] chars = Integer.toBinaryString(Integer.valueOf(str)).toCharArray();
 		if (ArrayUtils.contains(nums, str)) {
 			val = str;
 		} else {
 			StringBuffer sbu = new StringBuffer();
+			char[] chars = Integer.toBinaryString(Integer.valueOf(str.toString())).toCharArray();
+			ArrayUtils.reverse(chars);
+			System.out.println(Integer.toBinaryString(Integer.valueOf(str)));
 			for (int i = 0; i < chars.length; i++) {
 				if (chars[i] == '1') {
 					sbu.append(nums[i]);
@@ -60,6 +62,53 @@ public final class CCPUtil {
 			}
 			if (sbu.charAt(sbu.length()-1) == ',') {//去除最后一个逗号
 				sbu.deleteCharAt(sbu.length()-1);
+			}
+			val = sbu.toString();
+		}
+		
+		return val;
+	}
+	
+	/**
+	 * 数组      ---> 字符串
+	 * 		[1, 2, 3, 4] ---> "1,2,3,4"
+	 * 
+	 * @param objs 数组
+	 * @return String
+	 */
+	public static String array2Str(Object[] objs) {
+		String val = "";
+		if (objs.length > 0) {
+			StringBuffer sbu = new StringBuffer();
+			for (int i = 0; i < objs.length; i++) {
+				sbu.append(objs[i]);
+				if (i != objs.length-1 ) {
+					sbu.append(",");
+				}
+			}
+			val = sbu.toString();
+		}
+		
+		return val;
+	}
+	
+	/**
+	 * 数组      ---> 字符串
+	 * 		[1, 2, 3, 4] ---> "1@2@3@4"
+	 * 
+	 * @param objs 数组
+	 * @param joinChar 连接符号   
+	 * @return String
+	 */
+	public static String array2Str(Object[] objs, String joinChar) {
+		String val = "";
+		if (objs.length > 0) {
+			StringBuffer sbu = new StringBuffer();
+			for (int i = 0; i < objs.length; i++) {
+				sbu.append(objs[i]);
+				if (i != objs.length-1 ) {
+					sbu.append(joinChar);
+				}
 			}
 			val = sbu.toString();
 		}

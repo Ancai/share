@@ -1,8 +1,9 @@
-package com.share.demo.ccp;
 //package com.vrv.ccp.base;
 //
 //import java.lang.reflect.ParameterizedType;
 //import java.util.List;
+//import java.util.Map;
+//import java.util.Map.Entry;
 //
 //import javax.annotation.Resource;
 //
@@ -12,6 +13,7 @@ package com.share.demo.ccp;
 //import org.hibernate.Session;
 //import org.hibernate.SessionFactory;
 //import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 //
 //import com.vrv.ccp.bean.GridData;
 //import com.vrv.ccp.utils.HQLBuilderUtil;
@@ -241,4 +243,38 @@ package com.share.demo.ccp;
 //		
 //		return sqlQuery.list();
 //	}
+//	
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public List<Object[]> queryBySql(String sql, Map<String, Object> paramMap) {
+//		SQLQuery sqlQuery = this.getSession().createSQLQuery(sql);
+//		for (Entry<String, Object> entry : paramMap.entrySet()) {
+//			sqlQuery.setParameter(entry.getKey(), entry.getValue());
+//		}
+//		
+//		return sqlQuery.list();
+//	}
+//	
+//	@Override
+//	public List<T> list(String sql, Object... params) {
+//		return this.jdbcTemp.query(sql, 
+//				ParameterizedBeanPropertyRowMapper.newInstance(clazz), params);
+//	}
+//	
+//	@Override
+//	public List<T> list(String sql, Class<T> clazz, Object... params) {
+//		return this.jdbcTemp.query(sql, 
+//				ParameterizedBeanPropertyRowMapper.newInstance(clazz), params);
+//	}
+//	
+//	@Override
+//	public T getById(String sql, Integer id) {
+//		return this.jdbcTemp.queryForObject(sql, clazz, id);
+//	}
+//	
+//	@Override
+//	public T getById(String sql, Class<T> clazz, Integer id) {
+//		return this.jdbcTemp.queryForObject(sql, clazz, id);
+//	}
+//	
 //}

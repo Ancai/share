@@ -1,4 +1,3 @@
-package com.share.demo.ccp;
 //package com.vrv.ccp.service;
 //
 //import java.util.List;
@@ -7,6 +6,7 @@ package com.share.demo.ccp;
 //
 //import com.vrv.ccp.base.BaseService;
 //import com.vrv.ccp.bean.AmChart;
+//import com.vrv.ccp.bean.CheckItem;
 //import com.vrv.ccp.bean.ComplexRecord;
 //import com.vrv.ccp.bean.DataBean;
 //import com.vrv.ccp.bean.GridData;
@@ -53,12 +53,12 @@ package com.share.demo.ccp;
 //	public List<AmChart> reportList3(VrvCheckRecord checkRecord, int pageNum, int pageSize); 
 //	
 //	/**
-//	 * 拼接Hql语句的查询条件
+//	 * 根据策略内容，获得检查项
 //	 * 
-//	 * @param resultList reportList3方法中返回的一个结果集
-//	 * @return String
+//	 * @param policyCnt 策略内容
+//	 * @return CheckItem 检查项
 //	 */
-//	public String jointHqlCondition(VrvCheckRecord checkRecord);
+//	public CheckItem getCheckItemByPolicyCnt(String policyCnt);
 //	
 //	/**
 //	 * 报表：结果查询 > 上报记录
@@ -100,4 +100,31 @@ package com.share.demo.ccp;
 //	 * @return HSSFWorkbook POI工作簿
 //	 */
 //	public HSSFWorkbook exportByPolicy(String policyIds);
+//	
+//	/**
+//	 * 根据检查ID批量删除
+//	 * 
+//	 * @param checkIds
+//	 * @return int 删除的条数
+//	 */
+//	public int deleteByCheckId(String checkIds);
+//	
+//	/**
+//	 * 根据检查ID批量导出(Excel)
+//	 * 
+//	 * @param checkIds
+//	 * @return HSSFWorkbook POI工作簿
+//	 */
+//	public HSSFWorkbook exportByCheckId(String checkIds);
+//	
+//	/**
+//	 * 关于检查项的详情数据
+//	 * 
+//	 * @param checkRecord 上报记录
+//	 * @param checkType 检查类型
+//	 * @param pageNum  当前页码
+//	 * @param pageSize 每页大小
+//	 * @return GridData<?>
+//	 */
+//	public GridData<?> detailData(VrvCheckRecord checkRecord, String checkType, int pageNum, int pageSize);
 //}

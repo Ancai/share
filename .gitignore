@@ -1,5 +1,4 @@
-web/project
-web/web/.settings
-web/web/build
-web/web/.classpath
-web/web/.project
+.classpath
+.project
+.settings/
+build/

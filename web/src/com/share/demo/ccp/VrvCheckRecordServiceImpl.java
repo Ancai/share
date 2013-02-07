@@ -1,10 +1,10 @@
-package com.share.demo.ccp;
 //package com.vrv.ccp.service.impl;
 //
 //import java.io.StringReader;
 //import java.util.ArrayList;
 //import java.util.Date;
 //import java.util.HashMap;
+//import java.util.LinkedHashMap;
 //import java.util.List;
 //import java.util.Map;
 //import java.util.regex.Matcher;
@@ -21,6 +21,7 @@ package com.share.demo.ccp;
 //import org.springframework.stereotype.Service;
 //
 //import com.vrv.ccp.aop.Constant;
+//import com.vrv.ccp.aop.EncryptFactory;
 //import com.vrv.ccp.base.BaseServiceImpl;
 //import com.vrv.ccp.bean.AmChart;
 //import com.vrv.ccp.bean.CheckItem;
@@ -52,6 +53,7 @@ package com.share.demo.ccp;
 //import com.vrv.ccp.domain.VrvUdisk;
 //import com.vrv.ccp.domain.VrvUser;
 //import com.vrv.ccp.enums.CheckType;
+//import com.vrv.ccp.enums.EncryptModel;
 //import com.vrv.ccp.service.PolicyService;
 //import com.vrv.ccp.service.VrvCheckRecordService;
 //import com.vrv.ccp.utils.CoreUtil;
@@ -76,28 +78,18 @@ package com.share.demo.ccp;
 //		this.baseDao = vrvCheckRecordDao;
 //		this.vrvCheckRecordDao = vrvCheckRecordDao;
 //	}
-//	@Resource
-//	private PolicyDao policyDao;
-//	@Resource
-//	private PolicyService policyService;
-//	@Resource
-//	private VrvBaseDao vrvBaseDao;
-//	@Resource
-//	private VrvUserDao vrvUserDao;
-//	@Resource
-//	private VrvCommonDao vrvCommonDao;
-//	@Resource
-//	private VrvFileDao vrvFileDao;
-//	@Resource
-//	private VrvProcPortDao vrvProcPortDao;
-//	@Resource
-//	private VrvServiceDao vrvServiceDao;
-//	@Resource
-//	private VrvSoftWareDao vrvSoftWareDao;
-//	@Resource
-//	private VrvTraceDao vrvTraceDao;
-//	@Resource
-//	private VrvUdiskDao vrvUdiskDao;
+//	@Resource private EncryptFactory encryptFactory;
+//	@Resource private PolicyDao policyDao;
+//	//@Resource private PolicyService policyService;
+//	@Resource private VrvBaseDao vrvBaseDao;
+//	@Resource private VrvUserDao vrvUserDao;
+//	@Resource private VrvCommonDao vrvCommonDao;
+//	@Resource private VrvFileDao vrvFileDao;
+//	@Resource private VrvProcPortDao vrvProcPortDao;
+//	@Resource private VrvServiceDao vrvServiceDao;
+//	@Resource private VrvSoftWareDao vrvSoftWareDao;
+//	@Resource private VrvTraceDao vrvTraceDao;
+//	@Resource private VrvUdiskDao vrvUdiskDao;
 //	
 //	/** 星期的大写 **/
 //	private static final String[] WEEK = {"日", "一", "二", "三", "四", "五", "六"};
@@ -112,14 +104,15 @@ package com.share.demo.ccp;
 //		// TODO Auto-generated method stub
 //		GridData<DataBean> gridData = new GridData<DataBean>();
 //		
-//		HQLBuilderUtil hqlBuilder = new HQLBuilderUtil(VrvCheckRecord.class);
-//		hqlBuilder.addSelectClause(" this.policyId, max(this.planTime) as maxplanTime, max(this.id) as maxId ");
-//		hqlBuilder.addGroupByClause(" this.policyId ");
 //		Map<Integer, Policy> policyMap = policyDao.allPolicyInMap();
+//		String sql = " SELECT policyId, MAX(planTime) AS maxplanTime, MAX(id) as maxId FROM " + Constant.TABLE_CLIENT_CHECK_RECORD;
+//		Map<String, Object> paramMap = new HashMap<String, Object>();
 //		if (StringUtils.isNotBlank(vrvCheckRecord.getPolicyName())) {
-//			hqlBuilder.addWhereClause(" this.policyName like ? ", "%"+ vrvCheckRecord.getPolicyName() +"%");
-//		} 
-//		List<Object[]> groupList = vrvCheckRecordDao.queryByHql(hqlBuilder);
+//			sql += " WHERE policyName like :policyName ";
+//			paramMap.put("policyName", "%"+ vrvCheckRecord.getPolicyName() +"%");
+//		}
+//		sql += " GROUP BY policyId ";
+//		List<Object[]> groupList = vrvCheckRecordDao.queryBySql(sql, paramMap);;
 //		gridData.setTotal(groupList.size());
 //		groupList = groupList.subList(CoreUtil.getFromIndex(pageNum, pageSize), 
 //				CoreUtil.getToIndex(pageNum, pageSize, groupList.size()));
@@ -149,15 +142,15 @@ package com.share.demo.ccp;
 //	private DataBean getDataBean(Map<Integer, Policy> policyMap, Integer policyId, String maxUpTime,
 //			Integer maxId) {
 //		DataBean dataBean = null;
-//		if (policyMap.containsKey(policyId)) {
-//			Policy policy = policyMap.get(policyId);
-//			dataBean = new DataBean(policy.getName(), termText(policyService.getSchedule(policyId)),
-//					maxUpTime, String.valueOf(policyId), String.valueOf(maxId));
-//		} else {
+//		//if (policyMap.containsKey(policyId)) {
+//		//	Policy policy = encryptFactory.decrypt(EncryptModel.Policy, policyMap.get(policyId));
+//		//	dataBean = new DataBean(policy.getName(), termText(policyService.getSchedule(policyId)),
+//		//			maxUpTime, String.valueOf(policyId), String.valueOf(maxId));
+//		//} else {
 //			VrvCheckRecord vrvCheckRecord = queryById(maxId);
 //			dataBean = new DataBean(vrvCheckRecord.getPolicyName(), termText(getSchedule(vrvCheckRecord.getPolicyContent())),
 //					maxUpTime, String.valueOf(policyId), String.valueOf(maxId));
-//		}
+//		//}
 //		
 //		return dataBean;
 //	}
@@ -348,7 +341,7 @@ package com.share.demo.ccp;
 //	 * @param resultList reportList3方法中返回的一个结果集
 //	 * @return String
 //	 */
-//	public String jointHqlCondition(VrvCheckRecord vrvCheckRecord) {
+//	private String jointHqlCondition(VrvCheckRecord vrvCheckRecord) {
 //		StringBuffer sbuff = new StringBuffer("(");
 //		List<Object[]> resultList = vrvCheckRecordDao.queryBySql(vrvCheckRecord);
 //		for (int i = 0; i < resultList.size(); i++) {
@@ -369,13 +362,13 @@ package com.share.demo.ccp;
 //	 */
 //	private CheckItem getCheckItemByCheckRecord(VrvCheckRecord checkRecord) {
 //		CheckItem checkItem = new CheckItem();
-//		Policy policy = policyService.getPolicyById(checkRecord.getPolicyId());
-//		if (CoreUtil.notNull(policy)) {
-//			checkItem = policyService.getCheckItem(policy.getId());
-//		} else {
+//		//Policy policy = policyDao.queryById(checkRecord.getPolicyId());
+//		//if (CoreUtil.notNull(policy)) {
+//		//	checkItem = policyService.getCheckItem(policy.getId());
+//		//} else {
 //			String policyCnt = vrvCheckRecordDao.queryById(checkRecord.getId()).getPolicyContent();
 //			checkItem = getCheckItemByPolicyCnt(policyCnt);
-//		}
+//		//}
 //		
 //		return checkItem;
 //	}
@@ -387,7 +380,8 @@ package com.share.demo.ccp;
 //	 * @return CheckItem 检查项
 //	 */
 //	@SuppressWarnings("unchecked")
-//	private CheckItem getCheckItemByPolicyCnt(String policyCnt) {
+//	@Override
+//	public CheckItem getCheckItemByPolicyCnt(String policyCnt) {
 //		CheckItem checkItem = new CheckItem();
 //		SAXReader saxReader = new SAXReader();
 //		Document tempDoc = null; 
@@ -449,7 +443,7 @@ package com.share.demo.ccp;
 //					fileCheck.setExtName(ele.attributeValue("ExtName"));
 //					fileCheck.setCombineMode(ele.attributeValue("CombineMode").equals(YES) ? TRUE : FALSE);
 //					fileCheck.setCompareWithSpace(ele.attributeValue("CompareWithSpace").equals(YES) ? TRUE : FALSE);
-//					//fileCheck.setOnlyCheckName(ele.attributeValue("OnlyCheckName").equals(YES) ? TRUE : FALSE);
+//					fileCheck.setOnlyCheckName(ele.attributeValue("OnlyCheckName").equals(YES) ? TRUE : FALSE);
 //					fileCheck.setCreateFileTime1(ele.attributeValue("CreateFileTime1"));
 //					fileCheck.setCreateFileTime2(ele.attributeValue("CreateFileTime2"));
 //					fileCheck.setModifyFileTime1(ele.attributeValue("ModifyFileTime1"));
@@ -563,7 +557,7 @@ package com.share.demo.ccp;
 //	public Task getTask(VrvCheckRecord checkRecord) {
 //		// TODO Auto-generated method stub
 //		Task task = new Task();
-//		Policy policy = policyService.getPolicyById(checkRecord.getPolicyId());
+//		Policy policy = encryptFactory.decrypt(EncryptModel.Policy, policyDao.queryById(checkRecord.getPolicyId()));
 //		if (CoreUtil.notNull(policy)) {
 //			task.setName(policy.getName());
 //			task.setTerm(termText(getSchedule(policy.getContent())));
@@ -630,8 +624,7 @@ package com.share.demo.ccp;
 //	@Override
 //	public HSSFWorkbook exportByPolicy(String policyIds) {
 //		// TODO Auto-generated method stub
-//		Map<String, List<Object[]>> dataRow = new HashMap<String, List<Object[]>>();
-//		Map<String, String[]> titleRow = new HashMap<String, String[]>();
+//		
 //		String sql = " SELECT id from "+ Constant.TABLE_CLIENT_CHECK_RECORD +" WHERE  policyId IN ("+ policyIds +")";
 //		List<Object[]> results = vrvCheckRecordDao.queryBySql(sql);
 //		StringBuffer tempBuff = new StringBuffer();
@@ -642,6 +635,20 @@ package com.share.demo.ccp;
 //			}
 //		}
 //		String checkIds = tempBuff.toString();
+//		
+//		return exportExcel(checkIds);
+//	}
+//	
+//	/**
+//	 * 导出Excel 
+//	 * 
+//	 * @param checkIds 检查IDs
+//	 * @return HSSFWorkbook Excel 工作簿
+//	 */
+//	private HSSFWorkbook exportExcel(String checkIds) {
+//		Map<String, List<Object[]>> dataRow = new LinkedHashMap<String, List<Object[]>>();
+//		Map<String, String[]> titleRow = new LinkedHashMap<String, String[]>();
+//		String sql = "";
 //		//上报记录
 //		sql = Constant.SQL_QUERY_CLIENT_CHECK_RECORD + " WHERE id in ("+ checkIds +")";
 //		dataRow.put("上报记录", vrvCheckRecordDao.queryBySql(sql));
@@ -686,6 +693,122 @@ package com.share.demo.ccp;
 //		titleRow.put("计算机用户和多操作系统", new String[] {"ID", "检查ID", "用户名", "全名 ", "描述", "类型", "系统名称", "安装路径", "安装时间 ", "保留字段1", "保留字段2", "保留字段3", "保留字段4"});
 //		
 //		return POIUtil.excel(dataRow, titleRow);
+//	}
+//
+//	@Override
+//	public int deleteByCheckId(String checkIds) {
+//		// TODO Auto-generated method stub
+//		this.vrvBaseDao.deleteByCheckId(checkIds);
+//		this.vrvCommonDao.deleteByCheckId(checkIds);
+//		this.vrvFileDao.deleteByCheckId(checkIds);
+//		this.vrvProcPortDao.deleteByCheckId(checkIds);
+//		this.vrvServiceDao.deleteByCheckId(checkIds);
+//		this.vrvSoftWareDao.deleteByCheckId(checkIds);
+//		this.vrvTraceDao.deleteByCheckId(checkIds);
+//		this.vrvUdiskDao.deleteByCheckId(checkIds);
+//		this.vrvUserDao.deleteByCheckId(checkIds);
+//		
+//		return this.vrvCheckRecordDao.deleteBatch2(checkIds);
+//	}
+//
+//	@Override
+//	public HSSFWorkbook exportByCheckId(String checkIds) {
+//		// TODO Auto-generated method stub
+//		return exportExcel(checkIds);
+//	}
+//
+//	@Override
+//	public GridData<?> detailData(VrvCheckRecord checkRecord, String checkType, int pageNum, int pageSize) {
+//		// TODO Auto-generated method stub
+//		GridData<?> gridData = null;
+//		HQLBuilderUtil hqlBuilder = null;
+//		String hqlPart = " this.checkId in " + jointHqlCondition(checkRecord);
+//		switch (CheckType.valueOf(checkType)) {
+//			case BASEINFO: //基本信息
+//				hqlBuilder = new HQLBuilderUtil(VrvBase.class).addWhereClause(hqlPart);
+//				gridData = vrvBaseDao.getPageView(hqlBuilder, pageNum, pageSize);
+//				break;
+//			case USERLIST: //计算机用户
+//				hqlBuilder = new HQLBuilderUtil(VrvUser.class).addWhereClause(hqlPart).addWhereClause(" this.type = ? ", Constant.TYPE_USER);
+//				gridData = vrvUserDao.getPageView(hqlBuilder, pageNum, pageSize);		
+//				break;
+//			case PROCESS: //进程
+//				hqlBuilder = new HQLBuilderUtil(VrvProcPort.class).addWhereClause(hqlPart).addWhereClause(" this.type = ? ", Constant.TYPE_PROCESS);
+//				gridData = vrvProcPortDao.getPageView(hqlBuilder, pageNum, pageSize);
+//				break;
+//			case NETPORT: //网络端口
+//				hqlBuilder = new HQLBuilderUtil(VrvProcPort.class).addWhereClause(hqlPart).addWhereClause(" this.type = ? ", Constant.TYPE_PORT);
+//				gridData = vrvProcPortDao.getPageView(hqlBuilder, pageNum, pageSize);
+//				break;
+//			case UNPATCH: //未打补丁
+//				hqlBuilder = new HQLBuilderUtil(VrvSoftWare.class).addWhereClause(hqlPart).addWhereClause(" this.type = ? ", Constant.TYPE_UNPATCH);
+//				gridData = vrvSoftWareDao.getPageView(hqlBuilder, pageNum, pageSize);				
+//				break;
+//			case NETRECORD: //上网痕迹
+//				hqlBuilder = new HQLBuilderUtil(VrvTrace.class).addWhereClause(hqlPart);
+//				gridData = vrvTraceDao.getPageView(hqlBuilder, pageNum, pageSize);				
+//				break;
+//			case UDISKRECORD: //U盘使用记录
+//				hqlBuilder = new HQLBuilderUtil(VrvUdisk.class).addWhereClause(hqlPart);
+//				gridData = vrvUdiskDao.getPageView(hqlBuilder, pageNum, pageSize);				
+//				break;
+//			case NETDEVICE: //无线设备
+//				hqlBuilder = new HQLBuilderUtil(VrvCommon.class).addWhereClause(hqlPart);
+//				gridData = vrvCommonDao.getPageView(hqlBuilder, pageNum, pageSize);				
+//				break;
+//			case SOFTLIST: //软件
+//				hqlBuilder = new HQLBuilderUtil(VrvSoftWare.class).addWhereClause(hqlPart).addWhereClause(" this.type = ? ", Constant.TYPE_SOFTWARE);
+//				gridData = vrvSoftWareDao.getPageView(hqlBuilder, pageNum, pageSize);				
+//				break;
+//			case SERVERLIST: //服务
+//				hqlBuilder = new HQLBuilderUtil(VrvService.class).addWhereClause(hqlPart);
+//				gridData = vrvServiceDao.getPageView(hqlBuilder, pageNum, pageSize);
+//				break;
+//			case MUTIOS: //多操作系统
+//				hqlBuilder = new HQLBuilderUtil(VrvUser.class).addWhereClause(hqlPart).addWhereClause(" this.type = ? ", Constant.TYPE_MUTI_OS);
+//				gridData = vrvUserDao.getPageView(hqlBuilder, pageNum, pageSize);
+//				break;
+//			case FILECHECK: //文件内容
+//				hqlBuilder = new HQLBuilderUtil(VrvFile.class).addWhereClause(hqlPart);
+//				gridData = vrvFileDao.getPageView(hqlBuilder, pageNum, pageSize);
+//				break;
+//		}
+//		
+//		return reBin(gridData, checkRecord);
+//	}
+//	
+//	/**
+//	 * 重新组装GridData里面的数据
+//	 * 
+//	 * @param <T>
+//	 * @param gridData
+//	 * @param checkRecord
+//	 * @return GridData<T>
+//	 */
+//	private <T> GridData<T> reBin(GridData<T> gridData, VrvCheckRecord checkRecord) {
+//		String sql = Constant.SQL_QUERY_CLIENT_CHECK_RECORD + " WHERE id in " + jointHqlCondition(checkRecord);
+//		List<VrvCheckRecord> checkRecordList = vrvCheckRecordDao.list(sql);
+//		Map<Integer, VrvCheckRecord> tempMap = new HashMap<Integer, VrvCheckRecord>();
+//		for (VrvCheckRecord bean : checkRecordList) {
+//			tempMap.put(bean.getId(), bean);
+//		}
+//		List<T> rows = gridData.getRows();
+//		List<T> tempList = new ArrayList<T>();
+//		for (T t : rows) {
+//			Integer checkId;
+//			try {
+//				checkId = (Integer) t.getClass().getDeclaredMethod("getCheckId").invoke(t);
+//				String ipAddress = tempMap.get(checkId).getIpAddress();
+//				t.getClass().getDeclaredMethod("setIpAddress", String.class).invoke(t, ipAddress);
+//				tempList.add(t);
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				log.error("调用reBin方法，重新组装GridData时报错！", e);
+//			}
+//		}
+//		gridData.setRows(tempList);
+//		
+//		return gridData;
 //	}
 //	
 //}

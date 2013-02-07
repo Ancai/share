@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>web</name>
-	<comment></comment>
+	<comment>从share项目继承过来的</comment>
 	<projects>
 	</projects>
 	<buildSpec>

@@ -1,5 +1,5 @@
-web/.externalToolBuilders
-web/.settings
-web/build
-web/.classpath
-web/.project
+web/project
+web/web/.settings
+web/web/build
+web/web/.classpath
+web/web/.project

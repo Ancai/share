@@ -1,5 +1,6 @@
 .project
 web/.settings/
+web/bin/
 web/build/
 web/.classpath
 web/.project

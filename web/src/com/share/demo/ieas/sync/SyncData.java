@@ -22,9 +22,9 @@
 //	 * 		Class              ---> Area
 //	 */
 //	public enum SyncType {
-//		PMO_VIO, //PMoveableDiskEvent ---> ViolationEvent
-//		PMO_TER, //PMoveableDiskEvent ---> Terminal
-//		CLA_ARE  //Class              ---> Area
+//		PMDE_TO_VIOLATIONEVENT, //PMoveableDiskEvent ---> ViolationEvent
+//		DEVICE_TO_TERMINAL, //Device ---> Terminal
+//		CLASS_TO_AREA  //Class ---> Area
 //	}
 //	
 //	/**
@@ -32,6 +32,7 @@
 //	 */
 //	public enum TableEnum {
 //		PMoveableDiskEvent,
+//		Device,
 //		Class,
 //		ViolationEvent,
 //		Terminal,
@@ -64,8 +65,8 @@
 //	 * 
 //	 * @param <T> 实体类型
 //	 * @param syncData 要同步的数据
-//	 * @param sql 执行的sql语句
-//	 * @return int 
+//	 * @param syncType 同步的类型
+//	 * @return int DB中影响的行数
 //	 */
 //	public <T> int writeData(List<T> syncData, SyncType syncType);
 //	

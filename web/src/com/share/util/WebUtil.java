@@ -337,7 +337,6 @@ public final class WebUtil {
 			//设置响应报头
 			response.reset();
 			response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(reportName, ENCODING) + ".doc");
-			response.addHeader("Content-Length", "" + htmlTable.length());
 			response.setHeader("Pragma","No-cache"); 
 			response.setHeader("Cache-Control","no-cache"); 
 			response.setDateHeader("Expires", 0);
